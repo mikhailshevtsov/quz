@@ -37,6 +37,9 @@ constexpr string<Cs...> operator"" _qs() { return {}; }
 template <char... Cs>
 constexpr bool operator==(const string<Cs...>& left, const string<Cs...>& right) noexcept { return true; }
 
+template <char... Cs, char... OtherCs>
+constexpr bool operator==(const string<Cs...>& left, const string<OtherCs...>& right) noexcept { return false; }
+
 template <std::size_t N, char... Cs>
 constexpr bool operator==(const char (&left)[N], const string<Cs...>& right) noexcept { return N - 1 == right.size() && str_equal(left, right.data); }
 
