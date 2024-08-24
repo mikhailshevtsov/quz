@@ -105,18 +105,18 @@ template<quz_struct StructT>
 constexpr auto fields(StructT&& object) { return fields(std::forward<StructT>(object), std::make_index_sequence<std::decay_t<StructT>::size()>{}); }
 
 // For each quz-struct
-template <typename F, quz_struct StructT, std::size_t... Is>
-constexpr void for_each(F&& f, StructT&& object, std::index_sequence<Is...>) { ( std::forward<F>(f)(quz::get<Is>(std::forward<StructT>(object))) , ...); }
+template <typename Func, quz_struct StructT, std::size_t... Is>
+constexpr void foreach(Func&& func, StructT&& object, std::index_sequence<Is...>) { ( std::forward<Func>(func)(quz::get<Is>(std::forward<StructT>(object))) , ...); }
 
-template <typename F, quz_struct StructT>
-constexpr void for_each(F&& f, StructT&& object) { return for_each(std::forward<F>(f), std::forward<StructT>(object), std::make_index_sequence<std::decay_t<StructT>::size()>{}); }
+template <typename Func, quz_struct StructT>
+constexpr void foreach(Func&& func, StructT&& object) { foreach(std::forward<Func>(func), std::forward<StructT>(object), std::make_index_sequence<std::decay_t<StructT>::size()>{}); }
 
 // For each tuple
-template <typename F, typename Tup, std::size_t... Is>
-constexpr void for_each(F&& f, Tup&& object, std::index_sequence<Is...>) { ( std::forward<F>(f)(std::get<Is>(std::forward<Tup>(object))) , ...); }
+template <typename Func, typename Tup, std::size_t... Is>
+constexpr void foreach(Func&& func, Tup&& object, std::index_sequence<Is...>) { ( std::forward<Func>(func)(std::get<Is>(std::forward<Tup>(object))) , ... ); }
 
-template <typename F, typename Tup>
-constexpr void for_each(F&& f, Tup&& object) { return for_each(std::forward<F>(f), std::forward<Tup>(object), std::make_index_sequence<std::tuple_size<std::decay_t<Tup>>::value>{}); }
+template <typename Func, typename Tup>
+constexpr void foreach(Func&& func, Tup&& object) { foreach(std::forward<Func>(func), std::forward<Tup>(object), std::make_index_sequence<std::tuple_size<std::decay_t<Tup>>::value>{}); }
 
 }
 
