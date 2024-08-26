@@ -11,6 +11,10 @@ namespace quz
 #define QUZ_INDEX(INDEX) quz::index<INDEX>
 #define QUZ_INDEX_T(INDEX) decltype(QUZ_INDEX(INDEX))
 
+// Integral constant template variable
+template <std::size_t N>
+constexpr std::integral_constant<std::size_t, N> index = std::integral_constant<std::size_t, N>{};
+
 // Make reverse index sequence
 template <std::size_t, typename>
 struct make_reverse_index_sequence_helper;
@@ -20,11 +24,6 @@ struct make_reverse_index_sequence_helper<N, std::index_sequence<Is...>> : std::
 
 template <std::size_t N>
 struct make_reverse_index_sequence : make_reverse_index_sequence_helper<N - 1, decltype(std::make_index_sequence<N>{})> {};
-
-// Integral constant template variable
-template <std::size_t N>
-constexpr std::integral_constant<std::size_t, N> index = std::integral_constant<std::size_t, N>{};
-
 
 // Compile-time power
 constexpr std::size_t static_pow(std::size_t base, std::size_t exp) noexcept { return exp == 0 ? 1 : base * static_pow(base, exp - 1); }
