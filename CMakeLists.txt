@@ -4,9 +4,10 @@ project(quz)
 set(CMAKE_CXX_STANDARD 20)
 
 set(SOURCES
-    quz.hpp
-    quz_index.hpp
-    quz_string.hpp
+    "quz.hpp"
+    "index.hpp"
+    "string.hpp"
+    "preprocessor.hpp"
 )
 
 add_library(quz INTERFACE ${SOURCES})
