@@ -12,19 +12,6 @@ set(SOURCES
 
 add_library(quz INTERFACE ${SOURCES})
 target_include_directories(quz INTERFACE "quz/")
-
 target_compile_features(quz INTERFACE cxx_std_20)
 
 add_subdirectory(tests/)
-target_link_libraries(quz_test PRIVATE quz)
-
-include(FetchContent)
-FetchContent_Declare(
-    googletest
-    GIT_REPOSITORY https://github.com/google/googletest
-    GIT_TAG v1.15.2
-)
-FetchContent_MakeAvailable(googletest)
-FetchContent_GetProperties(googletest)
-
-target_link_libraries(quz_test PRIVATE gtest_main gmock_main)
