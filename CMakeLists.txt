@@ -4,7 +4,7 @@ project(quz)
 set(CMAKE_CXX_STANDARD 20)
 
 set(SOURCES
-    "quz.hpp"
+    "meta_struct.hpp"
     "index.hpp"
     "string.hpp"
     "preprocessor.hpp"
@@ -13,8 +13,9 @@ set(SOURCES
 add_library(quz INTERFACE ${SOURCES})
 target_include_directories(quz INTERFACE .)
 
-add_subdirectory(tests/)
+target_compile_features(quz INTERFACE cxx_std_20)
 
+add_subdirectory(tests/)
 target_link_libraries(quz_test PRIVATE quz)
 
 include(FetchContent)
