@@ -24,4 +24,4 @@
 #define ESC_(...) VAN ## __VA_ARGS__
 #define VANISH
 
-#endif
+#endif // QUZ_PREPROCESSOR_HPP
