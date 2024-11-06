@@ -45,9 +45,9 @@ size() noexcept { return {}; }
 
 
 // Define simple quz-struct field
-#define QUZ_FIELD(TYPE, NAME) \
+#define QUZ_FIELD(TYPE, NAME, ...) \
 NAME ##_index {}; \
-QUZ_DEPAREN(TYPE) NAME; \
+QUZ_DEPAREN(TYPE) NAME {QUZ_DEPAREN(__VA_ARGS__)}; \
 \
 template <bool IsConst> \
 class field<NAME ##_index, IsConst> : public basic_field { \
