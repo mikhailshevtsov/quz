@@ -96,9 +96,6 @@ QUZ_END
 struct STRUCT_NAME { QUZ_DEFINE_STRUCT(STRUCT_NAME, __VA_ARGS__) }
 
 
-template <meta_struct S, std::size_t Index>
-using field_t = typename S::field<Index>;
-
 // Get
 template<std::size_t Index, meta_struct S>
 constexpr auto& get(S& s) { return s[quz::index<Index>]; }
